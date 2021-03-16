@@ -6,6 +6,7 @@
   .swiper-wrapper {
     min-height: 100vh;
     box-sizing: border-box;
+    transition-delay: $default-min-animation-duration;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
@@ -96,6 +97,11 @@
   max-width: 34rem;
   font-size: 1.8rem;
   line-height: 2rem;
+  opacity: 0;
+  transform: translateX(20px);
+  transition:
+    opacity $default-min-animation-duration ease-out,
+    transform 0s ease-out $default-min-animation-duration;
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
@@ -122,6 +128,17 @@
     min-height: 14rem;
     font-size: 1.4rem;
     line-height: 1.5rem;
+  }
+
+  .swiper-slide-active &,
+  .swiper-slide-next & {
+    opacity: 1;
+    transition: all $default-min-animation-duration ease-out #{$default-min-animation-duration * 2};
+    transform: translateX(0);
+  }
+
+  .swiper-slide-next & {
+    transition-delay: 0.8s;
   }
 }
 
