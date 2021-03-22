@@ -6,7 +6,7 @@
   .swiper-wrapper {
     min-height: 100vh;
     box-sizing: border-box;
-    transition-delay: $default-min-animation-duration;
+    transition-delay: $history-slider-swipe-delay;
 
     @media (max-width: $tablet) and (orientation: portrait) {
       min-height: calc(var(--vh, 1vh) * 100);
@@ -100,8 +100,8 @@
   opacity: 0;
   transform: translateX(20px);
   transition:
-    opacity $default-min-animation-duration ease-out,
-    transform 0s ease-out $default-min-animation-duration;
+    opacity $history-slider-swipe-delay ease-out,
+    transform 0s ease-out $history-slider-swipe-delay;
 
   @media (min-width: $stop-scaling) {
     margin-top: 36px;
@@ -133,12 +133,12 @@
   .swiper-slide-active &,
   .swiper-slide-next & {
     opacity: 1;
-    transition: all $default-min-animation-duration ease-out #{$default-min-animation-duration * 2};
+    transition: all $default-min-animation-duration ease-out $default-min-animation-duration;
     transform: translateX(0);
   }
 
   .swiper-slide-next & {
-    transition-delay: 0.8s;
+    transition-delay: #{$default-min-animation-duration / 2 + $default-min-animation-duration};
   }
 }
 

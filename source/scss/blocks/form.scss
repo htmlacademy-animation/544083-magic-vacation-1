@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .form__label {
@@ -32,9 +33,9 @@
 .form__field {
   flex: none;
   margin-right: 3rem;
-  padding: 0 5.6rem;
+  padding: 0;
   height: 6rem;
-  width: calc(100% - 21rem);
+  width: 0;
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -43,6 +44,22 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+  transition: all $game-form-field-question-duration ease-out;
+
+  &::-webkit-input-placeholder {
+    color: transparent;
+    transition: color $default-min-animation-duration linear $game-form-field-question-duration;
+  }
+
+  .screen--game.active & {
+    padding: 0 5.6rem;
+    width: calc(100% - 21rem);
+
+    &::-webkit-input-placeholder {
+      color: lighten($c-dark, 40%);
+    }
+  }
+
 
   &:focus {
     border: 1px solid $c-purple;
@@ -79,8 +96,6 @@
 }
 
 .form__button {
-  flex-grow: 1;
-
   @media (orientation: portrait) {
     position: relative;
     flex: none;
