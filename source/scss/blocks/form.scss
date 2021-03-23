@@ -2,6 +2,7 @@
   position: relative;
   display: flex;
   align-items: center;
+  justify-content: flex-end;
 }
 
 .form__label {
@@ -32,9 +33,9 @@
 .form__field {
   flex: none;
   margin-right: 3rem;
-  padding: 0 5.6rem;
+  padding: 0;
   height: 6rem;
-  width: calc(100% - 21rem);
+  width: 0;
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -43,6 +44,22 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
+  transition: all $game-form-field-question-duration ease-out;
+
+  &::-webkit-input-placeholder {
+    color: transparent;
+    transition: color $default-min-animation-duration linear $game-form-field-question-duration;
+  }
+
+  .screen--game.active & {
+    padding: 0 5.6rem;
+    width: calc(100% - 21rem);
+
+    &::-webkit-input-placeholder {
+      color: lighten($c-dark, 40%);
+    }
+  }
+
 
   &:focus {
     border: 1px solid $c-purple;
@@ -50,37 +67,46 @@
 
   @media (min-width: $stop-scaling) {
     margin-right: 30px;
-    padding: 0 56px;
     height: 60px;
-    width: calc(100% - 210px);
     font-size: 24px;
     border-radius: 30px;
+
+    .screen--game.active & {
+      padding: 0 56px;
+      width: calc(100% - 210px);
+    }
   }
 
   @media (orientation: portrait) {
     margin-right: 1rem;
-    padding: 0 2.5rem;
-    width: calc(100% - 5rem);
     height: 4rem;
     font-size: 1.6rem;
+
+    .screen--game.active & {
+      padding: 0 2.5rem;
+      width: calc(100% - 5rem);
+    }
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
-    width: calc(100% - 9rem);
+    .screen--game.active & {
+      width: calc(100% - 9rem);
+    }
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-right: 1rem;
-    padding: 0 2.5rem;
-    width: calc(100% - 5rem);
     height: 4rem;
     font-size: 1.6rem;
+
+    .screen--game.active & {
+      padding: 0 2.5rem;
+      width: calc(100% - 5rem);
+    }
   }
 }
 
 .form__button {
-  flex-grow: 1;
-
   @media (orientation: portrait) {
     position: relative;
     flex: none;

@@ -3,11 +3,13 @@ import throttle from 'lodash/throttle';
 export default class FullPageScroll {
   constructor() {
     this.THROTTLE_TIMEOUT = 2000;
+    this.SCREEN_ACTIVE_TIMEOUT = 100;
 
     this.screenElements = document.querySelectorAll(`.screen:not(.screen--result)`);
     this.menuElements = document.querySelectorAll(`.page-header__menu .js-menu-link`);
 
     this.activeScreen = 0;
+    this.activeScreenTimer = null;
     this.onScrollHandler = this.onScroll.bind(this);
     this.onUrlHashChengedHandler = this.onUrlHashChanged.bind(this);
   }
@@ -39,13 +41,18 @@ export default class FullPageScroll {
     this.emitChangeDisplayEvent();
   }
 
+  addActiveClassOnDisplay() {
+    this.screenElements[this.activeScreen].classList.add(`active`);
+    window.clearTimeout(this.activeScreenTimer);
+  }
+
   changeVisibilityDisplay() {
     this.screenElements.forEach((screen) => {
       screen.classList.add(`screen--hidden`);
       screen.classList.remove(`active`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
-    this.screenElements[this.activeScreen].classList.add(`active`);
+    this.activeScreenTimer = window.setTimeout(() => this.addActiveClassOnDisplay(), this.SCREEN_ACTIVE_TIMEOUT);
   }
 
   changeActiveMenuItem() {
