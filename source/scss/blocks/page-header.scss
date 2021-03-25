@@ -35,6 +35,14 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: all 300ms ease-out;
+
+  .action & {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -177,6 +185,12 @@
   font-size: 1.2rem;
   line-height: 1.0418;
   color: $c-light;
+  opacity: 0;
+  transition: opacity 300ms cubic-bezier(.41,.84,.51,.96);
+
+  .action & {
+    opacity: 1;
+  }
 
   @media (min-width: $stop-scaling) {
     font-size: 12px;
@@ -271,9 +285,11 @@
     &.active {
       pointer-events: none;
 
-      &::after {
-        transform-origin: left;
-        transform: scaleX(1);
+      .action & {
+        &::after {
+          transform-origin: left;
+          transform: scaleX(1);
+        }
       }
     }
 

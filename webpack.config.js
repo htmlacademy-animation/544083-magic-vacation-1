@@ -92,7 +92,7 @@ module.exports = {
       template: 'source/index.html',
     }),
     new MiniCssExtractPlugin({
-      filename: 'css/style.css',
+      filename: 'css/style.min.css',
       chunkFilename: "[id].css"
     }),
     new CssoWebpackPlugin({
