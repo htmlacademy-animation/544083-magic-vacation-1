@@ -1,0 +1,17 @@
+.screen--bg {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: scaleY(0);
+  transform-origin: center bottom;
+  transition: transform $default-min-animation-duration, opacity $default-min-animation-duration linear #{$default-min-animation-duration + 50ms};
+
+  &.visible {
+    z-index: 2;
+    height: 100%;
+    opacity: 0;
+    background: $c-dark;
+    transform: scaleY(1);
+  };
+}

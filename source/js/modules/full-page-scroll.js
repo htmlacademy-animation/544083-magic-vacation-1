@@ -46,13 +46,35 @@ export default class FullPageScroll {
     window.clearTimeout(this.activeScreenTimer);
   }
 
-  changeVisibilityDisplay() {
+  toggleActiveScreen() {
     this.screenElements.forEach((screen) => {
-      screen.classList.add(`screen--hidden`);
-      screen.classList.remove(`active`);
+      const clsList = screen.classList;
+      clsList.add(`screen--hidden`);
+      clsList.remove(`active`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
     this.activeScreenTimer = window.setTimeout(() => this.addActiveClassOnDisplay(), this.SCREEN_ACTIVE_TIMEOUT);
+  }
+
+  changeVisibilityDisplay() {
+    const activeScreen = this.screenElements[this.activeScreen];
+    const bg = document.querySelector(`.js--screen--bg`);
+    const activeScreenElement = document.querySelector(`.screen.active`);
+
+    if (activeScreenElement && activeScreenElement.classList.contains(`screen--story`) && activeScreen.classList.contains(`screen--prizes`)) {
+      bg.classList.add(`visible`);
+      bg.addEventListener(`transitionend`, (e) => {
+        if (e.propertyName === `transform`) {
+          this.toggleActiveScreen();
+        }
+
+        if (e.propertyName === `opacity`) {
+          bg.classList.remove(`visible`);
+        }
+      });
+    } else {
+      this.toggleActiveScreen();
+    }
   }
 
   changeActiveMenuItem() {
