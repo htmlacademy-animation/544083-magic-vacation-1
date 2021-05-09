@@ -1,0 +1,15 @@
+.text__word {
+  display: inline-block;
+  margin: 0 5px;
+  white-space: nowrap;
+  overflow: hidden;
+
+  & > span {
+    transform: translate3d(0, 1em, 0);
+    display: inline-block;
+
+    .active_anim & {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

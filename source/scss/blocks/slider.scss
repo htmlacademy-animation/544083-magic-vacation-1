@@ -72,7 +72,7 @@
   font-family: $font-alt;
   font-weight: 400;
   font-size: 4.8rem;
-  line-height: 0.906;
+  line-height: 1;
   letter-spacing: -0.04em;
 
   @media (min-width: $stop-scaling) {
@@ -132,9 +132,11 @@
 
   .swiper-slide-active &,
   .swiper-slide-next & {
-    opacity: 1;
-    transition: all $default-min-animation-duration ease-out $default-min-animation-duration;
-    transform: translateX(0);
+    .active & {
+      opacity: 1;
+      transition: all $default-min-animation-duration ease-out $default-min-animation-duration;
+      transform: translateX(0);
+    }
   }
 
   .swiper-slide-next & {
