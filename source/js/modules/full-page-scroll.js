@@ -1,4 +1,5 @@
 import throttle from 'lodash/throttle';
+import accentTypographyList from "./accent-typography-list";
 
 export default class FullPageScroll {
   constructor() {
@@ -53,6 +54,32 @@ export default class FullPageScroll {
       clsList.remove(`active`);
     });
     this.screenElements[this.activeScreen].classList.remove(`screen--hidden`);
+
+    accentTypographyList.introTitleTop.destroyAnimation();
+    setTimeout(() => {
+      accentTypographyList.introTitleTop.runAnimation();
+    }, 200);
+
+    accentTypographyList.introTitleBottom.destroyAnimation();
+    setTimeout(() => {
+      accentTypographyList.introTitleBottom.runAnimation();
+    }, 450);
+
+    accentTypographyList.introDate.destroyAnimation();
+    setTimeout(() => {
+      accentTypographyList.introDate.runAnimation();
+    }, 1000);
+
+    accentTypographyList.sliderTitle.destroyAnimation();
+    setTimeout(() => {
+      accentTypographyList.sliderTitle.runAnimation();
+    }, 5);
+
+    accentTypographyList.prizeTitle.destroyAnimation();
+    setTimeout(() => {
+      accentTypographyList.prizeTitle.runAnimation();
+    }, 5);
+
     this.activeScreenTimer = window.setTimeout(() => this.addActiveClassOnDisplay(), this.SCREEN_ACTIVE_TIMEOUT);
   }
 

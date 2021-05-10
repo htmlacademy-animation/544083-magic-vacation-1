@@ -60,7 +60,6 @@
     }
   }
 
-
   &:focus {
     border: 1px solid $c-purple;
   }
@@ -153,22 +152,60 @@
 
 .form--result {
   .form__field {
-    width: calc(100% - 31rem);
+    opacity: 0;
+    width: 6rem;
+    transition: opacity 0ms ease-out 550ms,
+                width 300ms ease-out 550ms;
+
+    .screen--result.active & {
+      opacity: 1;
+      padding: 0 5.6rem;
+      width: calc(100% - 31rem);
+    }
 
     @media (min-width: $stop-scaling) {
-      width: calc(100% - 310px);
+      width: 60px;
+
+      .screen--result.active & {
+        padding: 0 56px;
+        width: calc(100% - 310px);
+      }
     }
 
     @media (orientation: portrait) {
-      width: calc(100% - 5rem);
+      width: 4rem;
+
+      .screen--result.active & {
+        width: calc(100% - 5rem);
+        padding: 0 2.5rem;
+      }
     }
 
     @media (max-width: $tablet) and (orientation: landscape) {
-      width: calc(100% - 9rem);
+      .screen--result.active & {
+        width: calc(100% - 9rem);
+      }
     }
 
     @media (max-width: $mobile) and (orientation: landscape) {
-      width: calc(100% - 5rem);
+      width: 4rem;
+
+      .screen--result.active & {
+        width: calc(100% - 5rem);
+        padding: 0 2.5rem;
+      }
+    }
+  }
+
+  .form__button {
+    opacity: 0;
+    color: transparent;
+    transition: opacity 300ms ease-out 250ms,
+                color 300ms ease-out 550ms;
+
+    .screen--result.active & {
+      color: $c-dark;
+      opacity: 1;
     }
   }
 }
