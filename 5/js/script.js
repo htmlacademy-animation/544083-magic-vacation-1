@@ -10609,6 +10609,7 @@ __webpack_require__.r(__webpack_exports__);
         let target = showResultEls[i].getAttribute(`data-target`);
         [].slice.call(results).forEach(function (el) {
           el.classList.remove(`screen--show`);
+          el.classList.remove(`active`);
           el.classList.add(`screen--hidden`);
         });
         let targetEl = [].slice.call(results).filter(function (el) {
@@ -10616,6 +10617,9 @@ __webpack_require__.r(__webpack_exports__);
         });
         targetEl[0].classList.add(`screen--show`);
         targetEl[0].classList.remove(`screen--hidden`);
+        window.setTimeout(() => {
+          targetEl[0].classList.add(`active`);
+        }, 100);
       });
     }
 

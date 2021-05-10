@@ -1427,19 +1427,42 @@ img {
       display: block; } }
 
 .form--result .form__field {
-  width: calc(100% - 31rem); }
+  opacity: 0;
+  width: 6rem;
+  transition: opacity 0ms ease-out 550ms, width 300ms ease-out 550ms; }
+  .screen--result.active .form--result .form__field {
+    opacity: 1;
+    padding: 0 5.6rem;
+    width: calc(100% - 31rem); }
   @media (min-width: 2000px) {
     .form--result .form__field {
-      width: calc(100% - 310px); } }
+      width: 60px; }
+      .screen--result.active .form--result .form__field {
+        padding: 0 56px;
+        width: calc(100% - 310px); } }
   @media (orientation: portrait) {
     .form--result .form__field {
-      width: calc(100% - 5rem); } }
+      width: 4rem; }
+      .screen--result.active .form--result .form__field {
+        width: calc(100% - 5rem);
+        padding: 0 2.5rem; } }
   @media (max-width: 1024px) and (orientation: landscape) {
-    .form--result .form__field {
+    .screen--result.active .form--result .form__field {
       width: calc(100% - 9rem); } }
   @media (max-width: 768px) and (orientation: landscape) {
     .form--result .form__field {
-      width: calc(100% - 5rem); } }
+      width: 4rem; }
+      .screen--result.active .form--result .form__field {
+        width: calc(100% - 5rem);
+        padding: 0 2.5rem; } }
+
+.form--result .form__button {
+  opacity: 0;
+  color: transparent;
+  transition: opacity 300ms ease-out 250ms, color 300ms ease-out 550ms; }
+  .screen--result.active .form--result .form__button {
+    color: #5f458c;
+    opacity: 1; }
 
 .game {
   flex-grow: 1;
@@ -2420,14 +2443,6 @@ img {
 
 .result__form {
   margin-top: auto; }
-  .result__form .form__button {
-    opacity: 0;
-    color: transparent;
-    animation: form-button 600ms ease-out 350ms forwards; }
-  .result__form .form__field {
-    transform: scale(0);
-    transform-origin: 100% 50%;
-    animation: form-field 300ms ease-out 650ms forwards; }
 
 .result--trip .result__title,
 .result--prize .result__title {
@@ -2540,20 +2555,6 @@ img {
   to {
     opacity: 1;
     transform: rotate(0); } }
-
-@keyframes form-button {
-  50% {
-    color: transparent;
-    opacity: 1; }
-  to {
-    color: #5f458c;
-    opacity: 1; } }
-
-@keyframes form-field {
-  from {
-    transform: scale(0); }
-  to {
-    transform: scale(1); } }
 
 .rules {
   position: relative;
